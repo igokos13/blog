@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Все посты{% endblock %}
+
+{% block content %}
+    <h2>Все посты</h2>
+
+    {% for post in posts %}
+        <div>
+            <h3><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h3>
+            <p>{{ post.text|truncatewords:20 }}</p>
+            <small>{{ post.created|date:"d.m.Y" }}</small>
+        </div>
+    {% empty %}
+        <p>Постов пока нет.</p>
+    {% endfor %}
+{% endblock %}
